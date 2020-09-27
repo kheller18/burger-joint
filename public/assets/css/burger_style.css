@@ -1,5 +1,41 @@
+body {
+    background-color: #e6af5d;
+}
+
 h1 {
     color: purple;
+    text-align: center;
+}
+
+.burgers {
+    /* display: block;
+    flex-direction: row; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.burger {
+    width: 275px;
+    height: 20px;
+}
+
+.devourButton {
+    width: 110px;
+    height: 30px;
+    padding: 5px;
+}
+
+.burgers-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.burgers-devoured,
+.burgers-undevoured {
+    width: 275px;
+    display: block;
 }
 
 .burger-pic {
@@ -12,6 +48,34 @@ h1 {
     left: 0;
     right: 0;
     justify-content: center;
+    margin-top: 20px;
+}
+
+#burger-input {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    left: 0;
+    right: 0;
+    justify-content: center;
+}
+
+#burger-submit {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    height: 30px;
+    padding: 5px;
+    background-color: lawngreen;
 }
 
 li {
