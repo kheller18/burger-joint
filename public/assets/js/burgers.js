@@ -1,13 +1,14 @@
-$(function() {
-
-    
+$(document).ready(function() {
     $(".create-form").on("submit", function(event) {
-        // Make sure to preventDefault on a submit event.
         event.preventDefault();
+
+        if (!$("#burger-input").val()) {
+            console.log("You did not enter a burger");
+            return location.reload();
+        }
     
         var newBurger = {
           name: $("#burger-input").val().trim(),
-        //   devoured: $("[name=devoured]:checked").val().trim()
           devoured: 0
         };
     
@@ -45,5 +46,5 @@ $(function() {
             location.reload();
           }
         );
-      });   
+    });   
 });
