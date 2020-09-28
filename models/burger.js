@@ -1,5 +1,6 @@
 const orm = require("../config/orm.js");
 
+// object to run different sql functions
 const burger = {
     all: function(cb) {
         orm.all("burgers", function(res) {
@@ -17,6 +18,5 @@ const burger = {
         });    
     }
 };
-
 
 module.exports = burger;

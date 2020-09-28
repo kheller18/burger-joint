@@ -1,5 +1,6 @@
 const connection = require("./connection.js");
 
+// function to print question marks for database insert function
 function printQuestionMarks(num) {
     let arr = [];
 
@@ -10,26 +11,23 @@ function printQuestionMarks(num) {
     return arr.toString();
 }
 
+// function to set key value pairs
 function objToSql(ob) {
     var arr = [];
   
-    // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
       var value = ob[key];
-      // check to skip hidden properties
       if (Object.hasOwnProperty.call(ob, key)) {
-        // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
         if (typeof value === "string" && value.indexOf(" ") >= 0) {
           value = "'" + value + "'";
         }
-        // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-        // e.g. {sleepy: true} => ["sleepy=true"]
         arr.push(key + "=" + value);
       }
     }
     return arr.toString();
 }  
 
+// orm to query from database
 let orm = {
     all: function(tableInput, cb) {
         let queryString = "SELECT * FROM " + tableInput + ";";
@@ -42,14 +40,13 @@ let orm = {
     },
     insert: function(table, cols, vals, cb) {
         let queryString = "INSERT INTO " + table;
+
         queryString += " (";
         queryString += cols.toString();
         queryString += ") ";
         queryString += "VALUES (";
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
-
-        console.log(queryString);
 
         connection.query(queryString, vals, function(err, result) {
             if (err) {
@@ -60,14 +57,13 @@ let orm = {
         });
     },
     update: function(table, objColVals, condition, cb) {
-        var queryString = "UPDATE " + table;
+        let queryString = "UPDATE " + table;
     
         queryString += " SET ";
         queryString += objToSql(objColVals);
         queryString += " WHERE ";
         queryString += condition;
     
-        console.log(queryString);
         connection.query(queryString, function(err, result) {
           if (err) {
             throw err;
@@ -77,8 +73,5 @@ let orm = {
         });
       },
 }
-
-
-
 
 module.exports = orm;

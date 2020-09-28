@@ -4,6 +4,7 @@
 
 <div class="burgers-all">
   <ul class="burgers-undevoured">
+    <h3>Devour Me!</h3>
     {{#each burgers}}
       {{#unless devoured}}
         <div class="burgers">
@@ -15,6 +16,7 @@
   </ul>
 
   <ul class="burgers-devoured">
+    <h3>Devoured</h3>
     {{#each burgers}}
       {{#if devoured}}
         <li class="burger">{{this.id}}. {{this.name}}</li>
@@ -24,11 +26,8 @@
 </div>
 
 <form class="create-form">
-
   <div class="form-group">
     <input type="text" id="burger-input" name="name" placeholder="Enter a burger you want to devour!">
   </div>
-
-
   <button type="submit" id="burger-submit">Add Burger!</button>
 </form>

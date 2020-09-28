@@ -2,11 +2,13 @@ $(document).ready(function() {
     $(".create-form").on("submit", function(event) {
         event.preventDefault();
 
+        // checks to see if anything was inputted when clicking submit
         if (!$("#burger-input").val()) {
             console.log("You did not enter a burger");
             return location.reload();
         }
-    
+        
+        // new burger object
         var newBurger = {
           name: $("#burger-input").val().trim(),
           devoured: 0
@@ -18,8 +20,7 @@ $(document).ready(function() {
           data: newBurger
         }).then(
           function() {
-            console.log("created new burger");
-            // Reload the page to get the updated list
+            console.log("A new burger was created to be devoured!");
             location.reload();
           }
         );
@@ -30,19 +31,19 @@ $(document).ready(function() {
         idSplit = id.split("-");
         idSplit = idSplit[1];
         var newDevoured = 1
-        console.log(event);
+
+        // object to reset from undevoured to devoured
         var newDevouredObj = {
           devoured: newDevoured
         };
-        console.log(id)
+
         // Send the PUT request.
         $.ajax("/api/burgers/" + idSplit, {
           type: "PUT",
           data: newDevouredObj
         }).then(
           function() {
-            console.log("burger is now devoured!", newDevoured);
-            // Reload the page to get the updated list
+            console.log("Burger has been devoured!", newDevoured);
             location.reload();
           }
         );
